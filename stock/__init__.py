@@ -9,6 +9,7 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+        SCHEDULER_API_ENABLED = True
     )
 
     if test_config is None:
@@ -26,6 +27,12 @@ def create_app(test_config=None):
 
     from . import db
     db.init_app(app)
+    '''
+        定时任务
+    '''
+    from .aps import scheduler
+    scheduler.init_app(app)
+    scheduler.start()
 
     from . import auth
     app.register_blueprint(auth.bp)
