@@ -14,4 +14,6 @@ class User(Base):
     def __repr__(self):
         return f'<User {self.name!r}>'
 
+class User_Hold(Base):
+    __tablename__ = 'user_hold'
 

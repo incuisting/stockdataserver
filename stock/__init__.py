@@ -29,8 +29,8 @@ def create_app(test_config=None):
     """
         数据库
     """
-    from . import database
-    database.init_app(app)
+    from . import db 
+    db.init_db(app)
     '''
         定时任务
     '''
